@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/assets/character_atlas.png" type="Texture" id=1]
+[ext_resource path="res://src/actors/SoulScript.gd" type="Script" id=2]
+[ext_resource path="res://src/assets/fonts/retro-gaming.tres" type="DynamicFontData" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 13.2937
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7.47876, 8.02967 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 128, 32 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 11
+font_data = ExtResource( 3 )
+
+[node name="Soul" type="StaticBody2D" groups=[
+"soul",
+]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="GrabArea" type="Area2D" parent="."]
+position = Vector2( -0.0683212, 1.98135 )
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
+position = Vector2( 0, -4.78257 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.136642, -1.2298 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = SubResource( 3 )
+hframes = 4
+
+[node name="Label" type="Label" parent="."]
+margin_left = -16.6707
+margin_top = -31.0184
+margin_right = 23.3293
+margin_bottom = -17.0184
+custom_fonts/font = SubResource( 4 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
