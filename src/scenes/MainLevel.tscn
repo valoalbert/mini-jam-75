@@ -1,45 +1,60 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/deliver-zone/DeliverZone.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/assets/fonts/retro-gaming.tres" type="DynamicFontData" id=3]
+[ext_resource path="res://src/img/backgorund.png" type="Texture" id=3]
 [ext_resource path="res://src/scripts/LevelScript.gd" type="Script" id=4]
+[ext_resource path="res://src/img/estrellitas.png" type="Texture" id=5]
+[ext_resource path="res://src/entities/soul-spawn/SoulSpawn.tscn" type="PackedScene" id=6]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec2 Direction = vec2(1.0, 0.0);
+uniform float Speed = 0.00;
+
+void fragment(){
+	COLOR = texture(TEXTURE, UV + (Direction * TIME * Speed));
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/Direction = Vector2( 1, 1 )
+shader_param/Speed = 0.02
+
+[sub_resource type="DynamicFont" id=3]
 size = 11
-font_data = ExtResource( 3 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 8, 104 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 128, 8 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 128, 16 )
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource( 4 )
 
+[node name="BackgroundFull" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite" parent="BackgroundFull"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Stars" type="Sprite" parent="BackgroundFull"]
+material = SubResource( 2 )
+texture = ExtResource( 5 )
+centered = false
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 240, 40 )
 
 [node name="DeliverZone" parent="." instance=ExtResource( 2 )]
-position = Vector2( 24, 48 )
+position = Vector2( 64, 56 )
 
 [node name="Spawns" type="Node2D" parent="."]
-
-[node name="Spawn1" type="Position2D" parent="Spawns"]
-position = Vector2( 22.3351, 224.909 )
-
-[node name="Spawn2" type="Position2D" parent="Spawns"]
-position = Vector2( 85.1851, 224.39 )
-
-[node name="Spawn3" type="Position2D" parent="Spawns"]
-position = Vector2( 159.982, 224.909 )
-
-[node name="Spawn4" type="Position2D" parent="Spawns"]
-position = Vector2( 233.74, 224.909 )
 
 [node name="Control" type="Control" parent="."]
 margin_right = 256.0
@@ -52,6 +67,9 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TimerControl" type="Control" parent="Control"]
 margin_left = 8.0
@@ -61,7 +79,7 @@ margin_bottom = 24.0
 [node name="Timer" type="Label" parent="Control/TimerControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "Test"
 align = 1
 valign = 1
@@ -74,7 +92,7 @@ margin_bottom = 24.0
 [node name="Points" type="Label" parent="Control/PointsControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "Points"
 align = 1
 valign = 1
@@ -90,25 +108,39 @@ collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenLimits/Left"]
 position = Vector2( -8, 120 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="Right" type="StaticBody2D" parent="ScreenLimits"]
 collision_layer = 16
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ScreenLimits/Right"]
 position = Vector2( 264, 120 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="Bottom" type="StaticBody2D" parent="ScreenLimits"]
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenLimits/Bottom"]
 position = Vector2( 128, 224 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="Top" type="StaticBody2D" parent="ScreenLimits"]
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenLimits/Top"]
 position = Vector2( 128, 8 )
-shape = SubResource( 1 )
+shape = SubResource( 6 )
+
+[node name="SoulSpawns" type="Node2D" parent="."]
+
+[node name="SoulSpawn3" parent="SoulSpawns" instance=ExtResource( 6 )]
+position = Vector2( 160, 216 )
+
+[node name="SoulSpawn" parent="SoulSpawns" instance=ExtResource( 6 )]
+position = Vector2( 16, 216 )
+
+[node name="SoulSpawn2" parent="SoulSpawns" instance=ExtResource( 6 )]
+position = Vector2( 80, 216 )
+
+[node name="SoulSpawn4" parent="SoulSpawns" instance=ExtResource( 6 )]
+position = Vector2( 240, 216 )
