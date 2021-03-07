@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/assets/minijam75logo.png" type="Texture" id=1]
+[ext_resource path="res://src/assets/godot_logo.png" type="Texture" id=2]
+[ext_resource path="res://src/scenes/SplashScreenScript.gd" type="Script" id=3]
+
+[node name="SplashScreen" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 256.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+margin_left = 48.0
+margin_top = 80.0
+margin_right = 112.0
+margin_bottom = 146.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+margin_left = 128.0
+margin_top = 72.0
+margin_right = 208.0
+margin_bottom = 146.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0

@@ -11,27 +11,33 @@ enum {NO_SOUL, SOUL_CARRY}
 var _state : int = NO_SOUL
 var _have_soul : bool
 var _able_to_grab : bool
+var _is_game_running : bool
 
 var soul_type : int
 var velocity = Vector2.ZERO
 
 func _ready():
+	_is_game_running = false
 	var _diss
+	_diss = Events.connect("soul_delivered", self, "_back_to_normal")
+	_diss = Events.connect("game_started", self, "_game_start")
 	speed = 100
 	grab_area.connect("body_entered", self, "_soul_grab_area_entered")
-	_diss = Events.connect("soul_delivered", self, "_back_to_normal")
 	pass
 
 func _physics_process(_delta):
-	get_input()
-	velocity = move_and_slide(velocity)
+	if _is_game_running:
+		get_input()
+		velocity = move_and_slide(velocity)
 
-	match _state:
-		NO_SOUL:
-			sprite.frame = 0
-			speed = 100
-		SOUL_CARRY:
-			sprite.frame = 1
+		match _state:
+			NO_SOUL:
+				sprite.frame = 0
+				speed = 100
+				$AnimationPlayer.play("idle")
+			SOUL_CARRY:
+				$AnimationPlayer.stop()
+				sprite.frame = 1
 
 func get_input():
 	velocity = Vector2.ZERO
@@ -67,3 +73,7 @@ func _soul_grab_area_entered(_body):
 
 func _back_to_normal():
 	_state = NO_SOUL
+
+func _game_start():
+	_is_game_running = true
+	

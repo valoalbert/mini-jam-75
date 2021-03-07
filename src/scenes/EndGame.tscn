@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/entities/deliver-zone/DeliverZone.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/scenes/EndGameScript.gd" type="Script" id=3]
+[ext_resource path="res://src/entities/BackgroundFull/BackgroundFull.tscn" type="PackedScene" id=4]
+
+[node name="EndGame" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="BackgroundFull" parent="." instance=ExtResource( 4 )]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 182.472, 98.5938 )
+
+[node name="DeliverZone" parent="." instance=ExtResource( 1 )]
+position = Vector2( 80.9352, 85.8404 )

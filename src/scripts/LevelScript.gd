@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var time_up_card = $TimeUpCard
+onready var get_ready_card = $GetReadyCard
 onready var deliver_zone = $DeliverZone
 onready var points_control = $Control/PointsControl
 
@@ -11,7 +12,9 @@ func _ready():
 	var _diss
 	_diss = Events.connect("soul_grabbed", self, "_spawn_skull")
 	_diss = Events.connect("end_game", self, "_on_game_ended")
+	_diss = Events.connect("game_started", self, "_on_game_started")
 	Events.emit_signal("soul_delivered")
+	_on_pre_game()
 
 func _spawn_skull(soul_type):
 	print(soul_type)
@@ -46,3 +49,14 @@ func _on_game_ended():
 	yield(time_up_card.get_node("AnimationPlayer"), "animation_finished")
 	print("endgame")
 	pass
+
+func _on_game_started():
+	$Control/TimerControl/Timer.start()
+
+func _on_pre_game():
+	GameManager.fade_out()
+	yield(GameManager.transition_fade.get_node("AnimationPlayer"), "animation_finished")
+	get_ready_card.get_node("AnimationPlayer").play("move-card")
+	yield(get_ready_card.get_node("AnimationPlayer"), "animation_finished")
+	get_ready_card.queue_free()
+	Events.emit_signal("game_started")

@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/assets/dialog_tile.png" type="Texture" id=1]
+[ext_resource path="res://src/assets/arrow.png" type="Texture" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://src/Fonts/Roboto/Roboto-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
+font_data = SubResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "continue"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 985.214, 160 ), Vector2( 985.214, 165 ), Vector2( 985.214, 155 ) ]
+}
+
+[node name="DialogBox" type="Control"]
+margin_left = 8.0
+margin_top = 128.0
+margin_right = 248.0
+margin_bottom = 216.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBoxBackground" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.933333 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextContainer" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/normal_font = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="TextContainer/RichTextLabel"]
+
+[node name="Arrow" type="Sprite" parent="."]
+visible = false
+position = Vector2( 232, 80.0001 )
+rotation = 1.5708
+scale = Vector2( 0.0234275, 0.0234275 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow"]
+autoplay = "continue"
+anims/continue = SubResource( 3 )

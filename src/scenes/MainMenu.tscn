@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://src/entities/Rivers/Rivers.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/entities/Rivers/Planet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/img/backgorund.png" type="Texture" id=2]
 [ext_resource path="res://src/img/estrellitas.png" type="Texture" id=3]
 [ext_resource path="res://src/assets/fonts/retro-gaming.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/scenes/MainMenuScript.gd" type="Script" id=5]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -35,8 +36,50 @@ size = 27
 outline_color = Color( 0, 0, 0, 1 )
 font_data = SubResource( 5 )
 
+[sub_resource type="Animation" id=7]
+resource_name = "start_game"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StartControls:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Planet:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 128, 272 ), Vector2( 128, 272 ), Vector2( 128, 368 ) ]
+}
+
 [node name="MainMenu" type="Node2D"]
 pause_mode = 2
+script = ExtResource( 5 )
+scene = "res://src/scenes/MainLevel.tscn"
 
 [node name="Control2" type="Control" parent="."]
 margin_right = 256.0
@@ -69,11 +112,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="StartControls"]
+[node name="StartButton" type="Button" parent="StartControls"]
 anchor_right = 1.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 4 )
 text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HSlider" type="HSlider" parent="StartControls"]
 anchor_top = 1.0
@@ -96,13 +142,6 @@ custom_constants/line_spacing = 0
 custom_constants/shadow_offset_y = 1
 text = "Volume"
 align = 1
-
-[node name="Control" parent="." instance=ExtResource( 1 )]
-modulate = Color( 0.74902, 0.894118, 0.956863, 1 )
-margin_left = 0.606636
-margin_top = 131.447
-margin_right = 0.606636
-margin_bottom = 131.447
 
 [node name="Control3" type="Control" parent="."]
 margin_top = 1.0
@@ -128,3 +167,10 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/start_game = SubResource( 7 )
+
+[node name="Planet" parent="." instance=ExtResource( 1 )]
+position = Vector2( 128, 272 )
+scale = Vector2( 2.5, 2.5 )

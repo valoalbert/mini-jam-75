@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/entities/deliver-zone/DeliverZoneScript.gd" type="Script" id=1]
 [ext_resource path="res://src/assets/black_hole.png" type="Texture" id=2]
+[ext_resource path="res://src/assets/blackhole_borde.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.0
@@ -24,6 +25,11 @@ region = Rect2( 384, 0, 128, 128 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "default",
@@ -41,5 +47,5 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
-frame = 3
+animation = "New Anim"
 playing = true
