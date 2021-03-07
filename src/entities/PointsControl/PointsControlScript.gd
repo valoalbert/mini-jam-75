@@ -15,5 +15,7 @@ func _update_text_label(points):
 	var text : String
 
 	current_points = current_points + points
+	if current_points == 42:
+		Events.emit_signal("bad_end")
 	text = "Souls Weight: " + str(current_points)
 	label.text = text

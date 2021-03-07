@@ -13,9 +13,15 @@ func load_dictionary() -> void:
 		"ingame" : {
 			"id_dialog_1" : tr("FORTYTWO")
 		},
-		"endgame" : {
-			"id_dialog_1" : tr("MAY_RED"),
-			"id_dialog_2" : tr("MAY_GREEN"),
-			"id_dialog_3" : tr("SAME")
+		"endgame_1" : {
+			"id_dialog_1" : tr("MAY_RED")
+		},
+		"endgame_2" : {
+			"id_dialog_1" : tr("MAY_GREEN")
+		},
+		"endgame_3" : {
+			"id_dialog_1" : tr("SAME1"),
+			"id_dialog_2" : tr("SAME2"),
+			"id_dialog_3" : tr("SAME3")
 		}
 	}

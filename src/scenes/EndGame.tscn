@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/entities/deliver-zone/DeliverZone.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/scenes/EndGameScript.gd" type="Script" id=3]
 [ext_resource path="res://src/entities/BackgroundFull/BackgroundFull.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/entities/DialogWindow/CharacterDialogWindowEntity.tscn" type="PackedScene" id=5]
 
 [node name="EndGame" type="Node2D"]
 script = ExtResource( 3 )
@@ -15,3 +16,35 @@ position = Vector2( 182.472, 98.5938 )
 
 [node name="DeliverZone" parent="." instance=ExtResource( 1 )]
 position = Vector2( 80.9352, 85.8404 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 256.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Control"]
+margin_right = 256.0
+margin_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Control2" type="Control" parent="Control"]
+margin_top = 144.0
+margin_right = 256.0
+margin_bottom = 224.0
+
+[node name="ColorRect2" type="ColorRect" parent="Control/Control2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterDialogWindow" parent="." instance=ExtResource( 5 )]
+dialog_dictionary = "endgame"

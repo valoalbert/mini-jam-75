@@ -11,7 +11,7 @@ region = Rect2( 0, 64, 64, 32 )
 height = 4.60563
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 10.1985
+radius = 12.108
 
 [sub_resource type="DynamicFont" id=4]
 size = 11
@@ -50,7 +50,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
-position = Vector2( 0.252159, 5.92567 )
+position = Vector2( 0.125252, 10.7483 )
 shape = SubResource( 3 )
 
 [node name="ActionLabel" type="Label" parent="."]

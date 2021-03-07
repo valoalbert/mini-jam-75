@@ -47,6 +47,8 @@ func _input(event):
 			_is_dialog_active = false
 			emit_signal("button_left_pressed")
 
+	if event.is_action_pressed("next"):
+		emit_signal("button_left_pressed")
 			
 func _text_tween_finished(_object: Object, _key: NodePath):
 	dialog_arrow.visible = true

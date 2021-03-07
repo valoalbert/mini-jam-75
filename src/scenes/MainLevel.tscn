@@ -81,7 +81,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="Control/TimerControl"]
-wait_time = 10.0
+wait_time = 60.0
 
 [node name="PointsControl" type="Control" parent="Control"]
 margin_left = 200.0

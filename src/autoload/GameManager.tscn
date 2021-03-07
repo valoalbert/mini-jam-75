@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/autoload/GameManagerScript.gd" type="Script" id=1]
 [ext_resource path="res://src/autoload/DialogDictionaryController.gd" type="Script" id=2]
+[ext_resource path="res://src/music/Love_Planet_Komiku.wav" type="AudioStream" id=3]
+[ext_resource path="res://src/music/Komiku_The adventure.wav" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
@@ -63,3 +65,11 @@ anims/fade_out = SubResource( 2 )
 
 [node name="DialogDictionaryEntity" type="Node2D" parent="."]
 script = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="GameplayMusic" type="AudioStreamPlayer" parent="Node2D"]
+stream = ExtResource( 3 )
+
+[node name="Mainmenu" type="AudioStreamPlayer" parent="Node2D"]
+stream = ExtResource( 4 )
