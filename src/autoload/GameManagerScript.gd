@@ -1,4 +1,6 @@
-extends Node
+extends Node2D
+
+onready var transition_fade = $Transitions/TransitionsControl/TransitionFadePanel
 
 func _ready():
 

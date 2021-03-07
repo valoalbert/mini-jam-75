@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/deliver-zone/DeliverZone.tscn" type="PackedScene" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://src/scripts/LevelScript.gd" type="Script" id=4]
 [ext_resource path="res://src/img/estrellitas.png" type="Texture" id=5]
 [ext_resource path="res://src/entities/soul-spawn/SoulSpawn.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/entities/PointsControl/PointsControlScript.gd" type="Script" id=7]
+[ext_resource path="res://src/assets/fonts/retro-gaming.tres" type="DynamicFont" id=8]
+[ext_resource path="res://src/entities/TimerControl/TimerControlScript.gd" type="Script" id=9]
+[ext_resource path="res://src/scenes/TimeUpCard.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -20,22 +24,30 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 shader_param/Direction = Vector2( 1, 1 )
-shader_param/Speed = 0.02
+shader_param/Speed = 0.01
 
-[sub_resource type="DynamicFont" id=3]
-size = 11
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://src/assets/fonts/Retro-Gaming/Retro Gaming.ttf"
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="DynamicFont" id=6]
+size = 8
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 5 )
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8, 104 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 128, 8 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 128, 16 )
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 220.013 ]
+}
 
 [node name="BackgroundFull" type="Node2D" parent="."]
 
@@ -75,28 +87,47 @@ __meta__ = {
 margin_left = 8.0
 margin_right = 56.0
 margin_bottom = 24.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Timer" type="Label" parent="Control/TimerControl"]
+[node name="TimerLabel" type="Label" parent="Control/TimerControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
-text = "Test"
+margin_right = -24.0
+custom_fonts/font = ExtResource( 8 )
+text = "Time: 60"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Control/TimerControl"]
+wait_time = 10.0
+autostart = true
 
 [node name="PointsControl" type="Control" parent="Control"]
 margin_left = 200.0
 margin_right = 248.0
 margin_bottom = 24.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Points" type="Label" parent="Control/PointsControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
-text = "Points"
+margin_left = -57.0
+custom_fonts/font = SubResource( 6 )
+text = "Soul Weight: 10000"
 align = 1
 valign = 1
+autowrap = true
 __meta__ = {
+"_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
@@ -108,39 +139,41 @@ collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenLimits/Left"]
 position = Vector2( -8, 120 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Right" type="StaticBody2D" parent="ScreenLimits"]
 collision_layer = 16
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ScreenLimits/Right"]
 position = Vector2( 264, 120 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Bottom" type="StaticBody2D" parent="ScreenLimits"]
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenLimits/Bottom"]
 position = Vector2( 128, 224 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="Top" type="StaticBody2D" parent="ScreenLimits"]
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenLimits/Top"]
 position = Vector2( 128, 8 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="SoulSpawns" type="Node2D" parent="."]
 
 [node name="SoulSpawn3" parent="SoulSpawns" instance=ExtResource( 6 )]
-position = Vector2( 160, 216 )
+position = Vector2( 159.615, 220.145 )
 
 [node name="SoulSpawn" parent="SoulSpawns" instance=ExtResource( 6 )]
-position = Vector2( 16, 216 )
+position = Vector2( 16, 220.145 )
 
 [node name="SoulSpawn2" parent="SoulSpawns" instance=ExtResource( 6 )]
-position = Vector2( 80, 216 )
+position = Vector2( 80, 220.145 )
 
 [node name="SoulSpawn4" parent="SoulSpawns" instance=ExtResource( 6 )]
-position = Vector2( 240, 216 )
+position = Vector2( 240.254, 220.145 )
+
+[node name="TimeUpCard" parent="." instance=ExtResource( 10 )]

@@ -22,7 +22,8 @@ config/icon="res://icon.png"
 [autoload]
 
 Events="*res://src/autoload/Events.gd"
-GameManager="*res://src/autoload/GameManagerScript.gd"
+GameManager="*res://src/autoload/GameManager.tscn"
+PlayerData="*res://src/autoload/PlayerData.gd"
 
 [debug]
 
@@ -82,6 +83,7 @@ reset={
 2d_physics/layer_3="grab_area"
 2d_physics/layer_4="deliver_zone"
 2d_physics/layer_5="environment"
+2d_physics/layer_6="skull"
 
 [rendering]
 

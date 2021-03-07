@@ -1,18 +1,69 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
-[sub_resource type="DynamicFont" id=1]
-size = 11
+[ext_resource path="res://src/entities/Rivers/Rivers.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/img/backgorund.png" type="Texture" id=2]
+[ext_resource path="res://src/img/estrellitas.png" type="Texture" id=3]
+[ext_resource path="res://src/assets/fonts/retro-gaming.tres" type="DynamicFont" id=4]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec2 Direction = vec2(1.0, 0.0);
+uniform float Speed = 0.00;
+
+void fragment(){
+	COLOR = texture(TEXTURE, UV + (Direction * TIME * Speed));
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/Direction = Vector2( 1, 1 )
+shader_param/Speed = 0.01
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://src/assets/fonts/Retro-Gaming/Retro Gaming.ttf"
+
+[sub_resource type="DynamicFont" id=4]
 size = 11
+font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://src/assets/fonts/Retro-Gaming/Retro Gaming.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 27
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 5 )
 
 [node name="MainMenu" type="Node2D"]
+pause_mode = 2
+
+[node name="Control2" type="Control" parent="."]
+margin_right = 256.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Control2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+
+[node name="stars" type="TextureRect" parent="Control2"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="StartControls" type="Control" parent="."]
-margin_left = 8.12411
-margin_top = 6.27773
-margin_right = 69.1241
-margin_bottom = 72.2777
+margin_left = 98.0367
+margin_top = 58.9357
+margin_right = 159.037
+margin_bottom = 124.936
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -21,7 +72,7 @@ __meta__ = {
 [node name="Button" type="Button" parent="StartControls"]
 anchor_right = 1.0
 margin_bottom = 20.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Start"
 
 [node name="HSlider" type="HSlider" parent="StartControls"]
@@ -34,8 +85,46 @@ margin_top = -16.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -1.0
+margin_top = -0.999985
+margin_right = -0.999989
 margin_bottom = 13.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = 0
+custom_constants/shadow_offset_y = 1
 text = "Volume"
 align = 1
+
+[node name="Control" parent="." instance=ExtResource( 1 )]
+modulate = Color( 0.74902, 0.894118, 0.956863, 1 )
+margin_left = 0.606636
+margin_top = 131.447
+margin_right = 0.606636
+margin_bottom = 131.447
+
+[node name="Control3" type="Control" parent="."]
+margin_top = 1.0
+margin_right = 255.0
+margin_bottom = 69.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="Label" parent="Control3"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -17.5
+margin_bottom = 17.5
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = -1
+custom_constants/shadow_offset_y = 3
+text = "21 GRAMS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

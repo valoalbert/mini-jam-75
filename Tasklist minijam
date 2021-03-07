@@ -1,0 +1,18 @@
+Tasklist minijam
+a ver...tenemos:
+
+falta ordenado por prioridades:
+
+- Cuando el timer llega a 0, hacer la conclusión
+- Una vez acabada la conclusión, preguntar al jugador/a si quiere reiniciar la partida para volver a intentarlo
+- Un cuadro para el dialogo
+	- El sistema de dialogo
+	- El diccionario con los distintos dialogos
+- Un menu principal, con control de sonido y la transición al dialogo de introducción
+- Implementar la música y quizá algunos efectos para cuando coges el alma y la entregas
+
+Que estaría bien, además:
+- Poner algún efecto cuando retiras el alma y la cabecita desaparece
+- Un poco más de animación en general
+	- sprites con más frames
+	- el astronauta flotando
