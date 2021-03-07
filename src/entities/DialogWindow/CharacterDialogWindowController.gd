@@ -1,8 +1,7 @@
 extends Control
 
-#class_name CharacterDialogWindow
-
 signal button_left_pressed
+signal dialog_box_closed
 
 export(String) var dialog_dictionary
 
@@ -11,10 +10,10 @@ onready var dialog_tween = $DialogBox/TextContainer/RichTextLabel/Tween
 onready var dialog_arrow = $DialogBox/Arrow
 
 var _is_dialog_active : bool = false
-var _dialog_box_scene : PackedScene = load("res://src/Entities/DialogWindow/DialogBox.tscn")
+var _dialog_box_scene : PackedScene = load("res://src/entities/DialogWindow/DialogBox.tscn")
 
 func _init():
-	self.add_child(_dialog_box_scene.instance())
+	self.call_deferred("add_child", _dialog_box_scene.instance())
 	pass
 
 func _ready() -> void:
@@ -38,6 +37,7 @@ func create_dialog_box() -> void:
 		yield(self, "button_left_pressed")
 
 	get_node("DialogBox").visible = false
+	emit_signal("dialog_box_closed")
 
 func _input(event):
 	if event is InputEventMouseButton \

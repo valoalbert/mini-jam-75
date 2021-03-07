@@ -1,0 +1,9 @@
+keys,es,en
+START1,"""Agujero Negro: Estás lista.""","""Black hole: You are ready."""
+START2,"""Reaper: Pero… ¿soy suficientemente sabia para elegir las correctas? Es demasiada carga…""","""Reaper: But… am I wise enough to choose the right ones? It is too much of a burden…"""
+START3,"""Agujero Negro: Ya sabes que eso no debe preocuparte. El peso es todo lo que importa.""","""Black hole: You already know that shouldn’t worry you. Weight is all that matters."""
+START4,"""Reaper: (…)""","""Reaper: (…)"""
+MAY_RED,"""Veo que has estado eligiendo almas malas. Ya hemos hablado de esto, el peso es todo lo que importa.""","""I see you’ve favored bad souls. We’ve discussed this; weight is all that matters."""
+MAY_GREEN,"""Interesante… Parece que ya no te importa tanto que las almas buenas sean una dura carga…""","""Oh, interesting… It looks like good souls aren’t too much of a burden anymore."""
+FORTYTWO,"""¡CUIDADO! Recuerda… somos muerte y el 42 es un número prohibido. El peso de un alma buena son 21 gramos; elige sabiamente.""","""CAUTION! Remember… we are death, and 42 is a forbidden number. A good soul weighs 21 grams; choose wisely."""
+SAME,"""Has conseguido un equilibrio entre almas buenas y malas, ¿esperas que te felicite? El Peso es todo lo que importa, ¿estás siendo efectiva? ¿Aún piensas que sabiduría y justicia van unidas?""","""You’ve managed to balance bad and good souls, do you expect me to congratulate you? Weight is all that matters, have you been weight-effective? Are you still convinced wisdom and justice come together?"""

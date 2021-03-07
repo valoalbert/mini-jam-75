@@ -11,13 +11,13 @@
 [ext_resource path="res://src/entities/TimerControl/TimerControlScript.gd" type="Script" id=9]
 [ext_resource path="res://src/scenes/TimeUpCard.tscn" type="PackedScene" id=10]
 
-[sub_resource type="DynamicFontData" id=5]
+[sub_resource type="DynamicFontData" id=1]
 font_path = "res://src/assets/fonts/Retro-Gaming/Retro Gaming.ttf"
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=2]
 size = 8
 outline_color = Color( 0, 0, 0, 1 )
-font_data = SubResource( 5 )
+font_data = SubResource( 1 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8, 104 )
@@ -25,7 +25,7 @@ extents = Vector2( 8, 104 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 128, 8 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 128, 16 )
 
 [node name="MainLevel" type="Node2D"]
@@ -96,7 +96,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -57.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 2 )
 text = "Soul Weight: 10000"
 align = 1
 valign = 1
@@ -135,7 +135,7 @@ collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenLimits/Top"]
 position = Vector2( 128, 8 )
-shape = SubResource( 7 )
+shape = SubResource( 5 )
 
 [node name="SoulSpawns" type="Node2D" parent="."]
 

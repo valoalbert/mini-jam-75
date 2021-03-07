@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/autoload/GameManagerScript.gd" type="Script" id=1]
+[ext_resource path="res://src/autoload/DialogDictionaryController.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
@@ -59,3 +60,6 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transitions/TransitionsControl"]
 anims/fade_in = SubResource( 1 )
 anims/fade_out = SubResource( 2 )
+
+[node name="DialogDictionaryEntity" type="Node2D" parent="."]
+script = ExtResource( 2 )

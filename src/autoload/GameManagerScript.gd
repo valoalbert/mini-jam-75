@@ -3,7 +3,7 @@ extends Node2D
 onready var transition_fade = $Transitions/TransitionsControl
 
 func _ready():
-
+	$DialogDictionaryEntity.load_dictionary()
 	pass
 
 func _input(event):

@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/entities/Rivers/Planet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/img/backgorund.png" type="Texture" id=2]
 [ext_resource path="res://src/img/estrellitas.png" type="Texture" id=3]
 [ext_resource path="res://src/assets/fonts/retro-gaming.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/scenes/MainMenuScript.gd" type="Script" id=5]
+[ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/entities/deliver-zone/DeliverZone.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/entities/DialogWindow/CharacterDialogWindowEntity.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -38,7 +41,7 @@ font_data = SubResource( 5 )
 
 [sub_resource type="Animation" id=7]
 resource_name = "start_game"
-length = 2.0
+length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Control3:visible")
 tracks/0/interp = 1
@@ -75,11 +78,35 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 128, 272 ), Vector2( 128, 272 ), Vector2( 128, 368 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Node2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 144 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Node2D/Control3:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 4, 5.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="MainMenu" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 5 )
-scene = "res://src/scenes/MainLevel.tscn"
+scene = "res://src/scenes/IntroScene.tscn"
 
 [node name="Control2" type="Control" parent="."]
 margin_right = 256.0
@@ -92,6 +119,9 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="stars" type="TextureRect" parent="Control2"]
 material = SubResource( 2 )
@@ -174,3 +204,53 @@ anims/start_game = SubResource( 7 )
 [node name="Planet" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128, 272 )
 scale = Vector2( 2.5, 2.5 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="DeliverZone" parent="Node2D" instance=ExtResource( 7 )]
+position = Vector2( 72, -64 )
+
+[node name="Player" parent="Node2D" instance=ExtResource( 6 )]
+position = Vector2( 200, -56 )
+
+[node name="Control3" type="Control" parent="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Node2D/Control3"]
+margin_top = -144.0
+margin_right = 256.0
+margin_bottom = -104.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Control3/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+
+[node name="Control2" type="Control" parent="Node2D/Control3"]
+margin_top = 8.0
+margin_right = 256.0
+margin_bottom = 80.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Control3/Control2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+
+[node name="CharacterDialogWindow" parent="." instance=ExtResource( 8 )]
+dialog_dictionary = "intro_dialog"

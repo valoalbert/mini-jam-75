@@ -22,8 +22,8 @@ config/icon="res://icon.png"
 [autoload]
 
 Events="*res://src/autoload/Events.gd"
-GameManager="*res://src/autoload/GameManager.tscn"
 PlayerData="*res://src/autoload/PlayerData.gd"
+GameManager="*res://src/autoload/GameManager.tscn"
 HTML5File="*res://addons/HTML5FileExchange/HTML5FileExchange.gd"
 
 [debug]
@@ -90,9 +90,12 @@ reset={
 2d_physics/layer_5="environment"
 2d_physics/layer_6="skull"
 
+[locale]
+
+translations=PoolStringArray( "res://src/locale/21_grams_con_nombres.en.translation", "res://src/locale/21_grams_con_nombres.es.translation" )
+
 [rendering]
 
-quality/driver/driver_name="GLES2"
 quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 environment/default_environment="res://default_env.tres"
